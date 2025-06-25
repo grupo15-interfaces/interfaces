@@ -1,0 +1,57 @@
+.logbook-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 992px) {
+  .logbook-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; margin-bottom: .5rem; font-weight: 500; }
+.form-group select, .form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: var(--bs-border-radius);
+}
+
+.history-section .placeholder {
+  text-align: center;
+  padding: 3rem;
+  color: #6c757d;
+  background-color: #f8f9fa;
+  border-radius: var(--bs-border-radius);
+}
+
+.log-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.log-entry {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.log-entry:last-child {
+  border-bottom: none;
+}
+
+.observation-text {
+  font-style: italic;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.metadata {
+  color: #6c757d;
+  font-size: 0.85rem;
+}

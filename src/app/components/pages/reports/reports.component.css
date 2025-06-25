@@ -1,0 +1,35 @@
+.filter-card {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.report-table {
+  width: 100%;
+  margin-top: 1rem;
+  border-collapse: collapse;
+}
+.report-table th, .report-table td {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+}
+.report-table th {
+  background-color: #f2f2f2;
+}
+.no-results {
+  text-align: center;
+  color: #6c757d;
+  padding: 2rem;
+}
+@media print {
+  .no-print {
+    display: none;
+  }
+  body, .container {
+    background-color: white;
+  }
+  .card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+}

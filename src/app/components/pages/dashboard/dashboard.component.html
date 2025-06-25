@@ -1,0 +1,52 @@
+<div class="container">
+  <h1>Bienvenido, {{ currentUser()?.name }}</h1>
+  <p>Este es el panel principal del Sistema de Gestión de Boxes. Selecciona una opción del menú lateral para comenzar.</p>
+
+  <div class="widgets-container">
+    <ng-container *ngIf="authService.isAdministrador()">
+      <div class="widget card">
+        <div class="widget-icon admin-icon">📅</div>
+        <div class="widget-content">
+          <h3>{{ totalReservations() }}</h3>
+          <p>Reservas Totales Activas</p>
+          <a routerLink="/app/reservations" class="widget-link">Gestionar Reservas &rarr;</a>
+        </div>
+      </div>
+      <div class="widget card">
+        <div class="widget-icon admin-icon">📊</div>
+        <div class="widget-content">
+          <h3>Reportes</h3>
+          <p>Generar informes de uso</p>
+          <a routerLink="/app/reports" class="widget-link">Ver Reportes &rarr;</a>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="authService.isCoordinador()">
+      <div class="widget card">
+        <div class="widget-icon coord-icon">✅</div>
+        <div class="widget-content">
+          <h3>{{ totalBoxes() }}</h3>
+          <p>Boxes Disponibles</p>
+           <a routerLink="/app/availability" class="widget-link">Consultar Disponibilidad &rarr;</a>
+        </div>
+      </div>
+      <div class="widget card">
+        <div class="widget-icon coord-icon">🏨</div>
+        <div class="widget-content">
+          <h3>{{ occupiedBoxesToday() }}</h3>
+          <p>Boxes Ocupados Hoy</p>
+          <a routerLink="/app/availability" class="widget-link">Ver Resumen Diario &rarr;</a>
+        </div>
+      </div>
+       <div class="widget card">
+        <div class="widget-icon coord-icon">📖</div>
+        <div class="widget-content">
+          <h3>Bitácora</h3>
+          <p>Registrar observaciones</p>
+          <a routerLink="/app/logbook" class="widget-link">Ir a la Bitácora &rarr;</a>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

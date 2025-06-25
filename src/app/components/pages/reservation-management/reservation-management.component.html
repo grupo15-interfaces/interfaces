@@ -1,0 +1,93 @@
+<div class="container">
+  <div class="header">
+    <h1>Gestión de Reservas</h1>
+    <button class="btn btn-primary" (click)="openCreateForm()">+ Nueva Reserva</button>
+  </div>
+
+  <div class="form-overlay" *ngIf="showForm()">
+    <div class="form-container card">
+      <h2>{{ isEditMode() ? 'Editar Reserva' : 'Crear Nueva Reserva' }}</h2>
+      <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
+        
+        <div class="form-group">
+          <label for="specialty">Especialidad</label>
+          <select id="specialty" formControlName="specialty">
+            <option value="" disabled>Seleccione una especialidad</option>
+            <option value="Cardiología">Cardiología</option>
+            <option value="Dermatología">Dermatología</option>
+            <option value="Pediatría">Pediatría</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+          <label for="boxId">Box</label>
+          <select id="boxId" formControlName="boxId" [disabled]="!reservationForm.get('specialty')?.value">
+            <option value="" disabled>Seleccione un box</option>
+            <option *ngFor="let box of availableBoxes()" [value]="box.id">
+              {{ box.name }} ({{ box.specialty }})
+            </option>
+          </select>
+          <small *ngIf="!reservationForm.get('specialty')?.value">Primero seleccione una especialidad.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="specialistName">Nombre del Especialista</label>
+          <input type="text" id="specialistName" formControlName="specialistName">
+        </div>
+
+        <div class="form-group">
+          <label for="date">Fecha</label>
+          <input type="date" id="date" formControlName="date">
+        </div>
+
+        <div class="form-group">
+          <label for="timeSlot">Bloque Horario</label>
+          <select id="timeSlot" formControlName="timeSlot">
+             <option value="" disabled>Seleccione un bloque</option>
+             <option value="09:00 - 10:00">09:00 - 10:00</option>
+             <option value="10:00 - 11:00">10:00 - 11:00</option>
+             <option value="11:00 - 12:00">11:00 - 12:00</option>
+             </select>
+        </div>
+        
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" (click)="closeForm()">Cancelar</button>
+          <button type="submit" class="btn btn-primary" [disabled]="reservationForm.invalid">
+            {{ isEditMode() ? 'Actualizar Reserva' : 'Crear Reserva' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="card">
+    <table class="reservations-table">
+      <thead>
+        <tr>
+          <th>Box</th>
+          <th>Especialista</th>
+          <th>Especialidad</th>
+          <th>Fecha</th>
+          <th>Horario</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let res of reservations()">
+          <td>{{ getBoxName(res.boxId) }}</td>
+          <td>{{ res.specialistName }}</td>
+          <td>{{ res.specialty }}</td>
+          <td>{{ res.date }}</td>
+          <td>{{ res.timeSlot }}</td>
+          <td class="actions">
+            <button class="btn-edit" (click)="openEditForm(res)">Editar</button>
+            <button class="btn-danger" (click)="onDelete(res.id)">Eliminar</button>
+          </td>
+        </tr>
+        <tr *ngIf="reservations().length === 0">
+            <td colspan="6" style="text-align: center; padding: 2rem;">No hay reservas existentes.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

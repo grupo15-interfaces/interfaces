@@ -1,0 +1,57 @@
+<div class="container" id="report-section">
+  <div class="no-print">
+    <h1>Reporte de Gestión de Reservas</h1>
+    <p>Utilice los filtros para generar un reporte personalizado y luego imprímalo.</p>
+  </div>
+  
+  <div class="card filter-card no-print">
+    <div class="form-group">
+      <label for="startDate">Fecha Inicio:</label>
+      <input type="date" id="startDate" [ngModel]="filters().startDate" (ngModelChange)="updateFilters('startDate', $event)">
+    </div>
+     <div class="form-group">
+      <label for="endDate">Fecha Fin:</label>
+      <input type="date" id="endDate" [ngModel]="filters().endDate" (ngModelChange)="updateFilters('endDate', $event)">
+    </div>
+     <div class="form-group">
+      <label for="specialty">Especialidad:</label>
+      <select id="specialty" [ngModel]="filters().specialty" (ngModelChange)="updateFilters('specialty', $event)">
+        <option value="all">Todas</option>
+        <option value="Cardiología">Cardiología</option>
+        <option value="Dermatología">Dermatología</option>
+        <option value="Pediatría">Pediatría</option>
+        </select>
+    </div>
+    <button class="btn btn-secondary" (click)="printReport()">Imprimir Reporte</button>
+  </div>
+
+  <div class="card report-view">
+     <h2>Reporte de Reservas</h2>
+
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>ID Reserva</th>
+            <th>Box</th>
+            <th>Especialista</th>
+            <th>Especialidad</th>
+            <th>Fecha</th>
+            <th>Horario</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let res of filteredReservations()">
+            <td>{{ res.id }}</td>
+            <td>{{ getBoxName(res.boxId) }}</td>
+            <td>{{ res.specialistName }}</td>
+            <td>{{ res.specialty }}</td>
+            <td>{{ res.date }}</td>
+            <td>{{ res.timeSlot }}</td>
+          </tr>
+           <tr *ngIf="filteredReservations().length === 0">
+            <td colspan="6" class="no-results">No se encontraron resultados para los filtros seleccionados.</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>

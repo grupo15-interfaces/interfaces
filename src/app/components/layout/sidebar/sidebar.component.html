@@ -1,0 +1,23 @@
+<div class="sidebar-container">
+  <div class="logo-area">
+    <li><a routerLink="/app/dashboard"><img src="https://www.redsalud.cl/assets/media/logo-redsalud.svg" alt="Logo RedSalud"></a></li>
+  </div>
+  <nav class="menu">
+    <ul>
+      <li><a routerLink="/app/dashboard" routerLinkActive="active"><i class="icon">🏠</i> Dashboard</a></li>
+      
+      <ng-container *ngIf="isAdministrador()">
+        <li class="menu-header">Administración</li>
+        <li><a routerLink="/app/reservations" routerLinkActive="active"><i class="icon">📅</i> Gestionar Reservas</a></li>
+        <li><a routerLink="/app/reports" routerLinkActive="active"><i class="icon">📊</i> Reportes de Gestión</a></li>
+        <li><a routerLink="/app/alerts" routerLinkActive="active"><i class="icon">🔔</i> Alertas de Disponibilidad</a></li>
+      </ng-container>
+
+      <ng-container *ngIf="isCoordinador()">
+        <li class="menu-header">Coordinación</li>
+        <li><a routerLink="/app/availability" routerLinkActive="active"><i class="icon">✅</i> Consultar Disponibilidad</a></li>
+        <li><a routerLink="/app/logbook" routerLinkActive="active"><i class="icon">📖</i> Bitácora de Boxes</a></li>
+      </ng-container>
+    </ul>
+  </nav>
+</div>

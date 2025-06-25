@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>Alertas de Disponibilidad</h1>
+  <p>Esta sección muestra alertas automáticas generadas por el sistema, como boxes que permanecen desocupados en bloques horarios.</p>
+
+  <div class="alerts-list card">
+    <div *ngIf="notifications().length === 0" class="no-alerts">
+      No hay alertas para mostrar en este momento.
+    </div>
+    <div *ngFor="let notif of notifications()" class="alert-item" [ngClass]="notif.type">
+      <div class="alert-icon">
+        <span *ngIf="notif.type === 'warning'">⚠️</span>
+        <span *ngIf="notif.type === 'error'">❌</span>
+        <span *ngIf="notif.type === 'info'">ℹ️</span>
+      </div>
+      <div class="alert-content">
+        <p>{{ notif.message }}</p>
+        <small>{{ notif.timestamp | date:'dd/MM/yyyy HH:mm:ss' }}</small>
+      </div>
+    </div>
+  </div>
+</div>

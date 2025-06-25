@@ -1,0 +1,57 @@
+.filter-card {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#date-filter {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: var(--bs-border-radius);
+}
+
+.grid-container {
+  overflow-x: auto;
+}
+
+.grid-header, .grid-row {
+  display: grid;
+  grid-template-columns: 120px repeat(auto-fit, minmax(150px, 1fr));
+  border-bottom: 1px solid #eee;
+}
+
+.grid-header {
+  font-weight: bold;
+  background-color: #f8f9fa;
+}
+
+.time-col, .box-col {
+  padding: 1rem;
+  text-align: center;
+  border-right: 1px solid #eee;
+}
+
+.box-col:last-child {
+  border-right: none;
+}
+
+.box-col.occupied {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.box-col.free {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.specialist {
+  display: block;
+  font-weight: 500;
+}
+
+.box-col small {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}

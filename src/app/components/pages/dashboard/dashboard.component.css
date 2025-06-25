@@ -1,0 +1,54 @@
+.widgets-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.widget {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.widget-icon {
+  font-size: 3rem;
+  margin-right: 1.5rem;
+  padding: 1rem;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.widget-icon.admin-icon {
+  background-color: #e8f0fe;
+  color: #1a73e8;
+}
+
+.widget-icon.coord-icon {
+  background-color: #e6f7ff;
+  color: var(--secondary-color);
+}
+
+
+.widget-content h3 {
+  margin: 0;
+  font-size: 2rem;
+  color: var(--dark-gray);
+}
+
+.widget-content p {
+  margin: 0;
+  color: #6c757d;
+}
+
+.widget-link {
+    margin-top: 0.5rem;
+    display: inline-block;
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 500;
+}

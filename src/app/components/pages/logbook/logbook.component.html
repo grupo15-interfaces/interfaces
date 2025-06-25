@@ -1,0 +1,39 @@
+<div class="container">
+  <h1>Bitácora de Boxes</h1>
+  <p>Seleccione un box y registre observaciones sobre su uso, estado o cualquier otra incidencia.</p>
+
+  <div class="logbook-layout">
+    <div class="form-section card">
+      <h3>Registrar Nueva Observación</h3>
+      <form [formGroup]="logForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="boxId">Seleccionar Box:</label>
+          <select id="boxId" formControlName="boxId">
+            <option value="" disabled>-- Elija un box --</option>
+            <option *ngFor="let box of boxes()" [value]="box.id">{{ box.name }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="observation">Observación:</label>
+          <textarea id="observation" rows="5" formControlName="observation" placeholder="Ej: Se reporta falla en el aire acondicionado..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="logForm.invalid">Registrar</button>
+      </form>
+    </div>
+    <div class="history-section card">
+      <h3>Historial de Observaciones</h3>
+      <div *ngIf="!selectedBoxId()">
+        <p class="placeholder">Seleccione un box para ver su historial.</p>
+      </div>
+      <div *ngIf="selectedBoxId() && logHistory().length === 0">
+         <p class="placeholder">No hay observaciones para este box.</p>
+      </div>
+      <ul class="log-list" *ngIf="selectedBoxId() && logHistory().length > 0">
+        <li *ngFor="let log of logHistory()" class="log-entry">
+          <p class="observation-text">"{{ log.observation }}"</p>
+          <small class="metadata">Registrado por <strong>{{ log.author }}</strong> el {{ log.date | date:'dd/MM/yyyy HH:mm' }}</small>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

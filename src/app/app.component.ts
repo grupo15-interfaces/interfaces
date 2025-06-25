@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  // Esta línea es la más importante. Debe tener el router-outlet.
+  template: '<router-outlet></router-outlet>',
 })
 export class AppComponent {
-  title = 'mysite';
+  title = 'red-salud-app';
 }

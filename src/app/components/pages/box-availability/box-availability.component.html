@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>Consultar Disponibilidad de Boxes</h1>
+  <p>Selecciona una fecha para ver los boxes ocupados y disponibles en la grilla horaria.</p>
+
+  <div class="card filter-card">
+    <label for="date-filter">Seleccionar Fecha:</label>
+    <input 
+      type="date" 
+      id="date-filter" 
+      [ngModel]="selectedDate()"
+      (ngModelChange)="selectedDate.set($event)">
+  </div>
+
+  <div class="grid-container card">
+    <div class="grid-header">
+      <div class="time-col">Horario</div>
+      <div *ngFor="let box of boxes()" class="box-col">{{ box.name }}</div>
+    </div>
+    <div *ngFor="let slot of availabilityGrid()" class="grid-row">
+      <div class="time-col">{{ slot.time }}</div>
+      <div *ngFor="let item of slot.boxes" class="box-col" 
+           [ngClass]="{ 'occupied': item.reservation, 'free': !item.reservation }">
+        <div *ngIf="item.reservation; else freeSlot">
+          <strong class="specialist">{{ item.reservation.specialistName }}</strong>
+          <small>{{ item.reservation.specialty }}</small>
+        </div>
+        <ng-template #freeSlot>
+          <span>Libre</span>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

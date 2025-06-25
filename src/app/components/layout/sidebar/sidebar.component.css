@@ -1,0 +1,67 @@
+.sidebar-container {
+  background-color:  #009999;
+  color: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  user-select: none;
+}
+.logo-area {
+  padding: 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid #066;
+}
+.logo-area img {
+  max-width: 180px;
+  border: 1px solid #000;
+  border-radius: 8px;
+  padding: 6px;
+  background-color: #9c0;
+  position: relative;
+  cursor: pointer;
+}
+
+.logo-area img:hover::after {
+  content: "Logo";
+  position: absolute;
+  left: 50%;
+  bottom: -2.2rem;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 0.85rem;
+  pointer-events: none;
+  z-index: 10;
+}
+
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.menu-header {
+  padding: 1rem 1.5rem 0.5rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #252525;
+  font-weight: 700;
+}
+.menu a {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+.menu a:hover, .menu a.active {
+  background-color: #008484;
+}
+.menu a .icon {
+  margin-right: 1rem;
+}

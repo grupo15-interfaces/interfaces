@@ -1,0 +1,27 @@
+<header class="header-container">
+  <div class="header-left">
+    <button class="btn-icon btn-toggle-sidebar" (click)="uiService.toggleSidebar()">
+      ☰
+    </button>
+    <div class="header-title">
+      <h2>Portal de Gestión</h2>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="notification-bell" (click)="toggleNotifications()">
+      <i class="icon">🔔</i>
+      <span *ngIf="notifications().length > 0" class="badge">{{ notifications().length }}</span>
+      <div *ngIf="showNotifications" class="notifications-dropdown">
+        <div *ngIf="notifications().length === 0" class="no-notif">No hay notificaciones</div>
+        <div *ngFor="let notif of notifications()" class="notification-item" [ngClass]="notif.type">
+          {{ notif.message }}
+        </div>
+      </div>
+    </div>
+    <div class="user-info">
+      <span>{{ user()?.name }}</span>
+      <small>{{ user()?.role }}</small>
+    </div>
+    <button class="btn-logout" (click)="authService.logout()">Salir</button>
+  </div>
+</header>
